@@ -19,6 +19,10 @@ bin/
 # Logs / OS
 *.log
 logs/
+# ...except the committed smoke-test evidence (run-logs/<mc>/*.log)
+!run-logs/**
+# Production-launcher smoke-test servers (tools/smoke_server.py)
+run-prod/
 .DS_Store
 Thumbs.db
 # Release jars copied aside per MC version (build/ is wiped by clean)

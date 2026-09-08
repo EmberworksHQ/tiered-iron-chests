@@ -1,0 +1,94 @@
+
+> Configure project :common
+Fabric Loom: 1.17.20
+
+> Configure project :fabric
+Fabric Loom: 1.17.20
+
+> Task :neoforge:createMinecraftArtifacts UP-TO-DATE
+> Task :neoforge:compileJava UP-TO-DATE
+> Task :neoforge:generateModMetadata UP-TO-DATE
+> Task :neoforge:processResources UP-TO-DATE
+> Task :neoforge:classes UP-TO-DATE
+
+> Task :neoforge:downloadAssets
+Loaded 145 artifacts from H:\AutoMods\mods\tiered-iron-chests\neoforge\build\tmp\downloadAssets\nfrt_artifact_manifest.properties
+Downloading asset index 17
+Using Minecraft asset root: C:\Users\Liam\.gradle\caches\neoformruntime\assets
+  DL    https://piston-meta.mojang.com/v1/packages/9aaf1b51d4866658c0191e58c89c0803183cd4ea/17.json
+
+> Task :neoforge:writeServerLegacyClasspath
+> Task :neoforge:prepareServerRun
+
+> Task :neoforge:runServer
+WARN StatusConsoleListener Advanced terminal features are not available in this environment
+[11:06:08] [main/INFO] [cp.mo.mo.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgeserverdev, --gameDir, ., --fml.fmlVersion, 4.0.44, --fml.mcVersion, 1.21.1, --fml.neoForgeVersion, 21.1.250, --fml.neoFormVersion, 20240808.144430, --nogui]
+[11:06:08] [main/INFO] [cp.mo.mo.Launcher/MODLAUNCHER]: JVM identified as Eclipse Adoptium OpenJDK 64-Bit Server VM 21.0.10+7-LTS
+[11:06:08] [main/INFO] [cp.mo.mo.Launcher/MODLAUNCHER]: ModLauncher 11.0.5+main.901c6ea8 starting: java version 21.0.10 by Eclipse Adoptium; OS Windows 11 arch amd64 version 10.0
+[11:06:08] [main/WARN] [ne.ne.fm.lo.FMLConfig/CORE]: Configuration file H:\AutoMods\mods\tiered-iron-chests\neoforge\run\config\fml.toml is not correct. Correcting
+[11:06:08] [main/WARN] [ne.ne.fm.lo.FMLConfig/CORE]: Incorrect key [disableConfigWatcher] was corrected from null to false
+[11:06:08] [main/INFO] [ne.ne.fm.lo.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgeserverdev
+[11:06:08] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=union:/C:/Users/Liam/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.15.2+mixin.0.8.7/2af2f021d8e02a0220dc27a7a72b4666d66d44ca/sponge-mixin-0.15.2+mixin.0.8.7.jar%2394!/ Service=ModLauncher Env=SERVER
+[11:06:08] [main/WARN] [ne.ne.fm.lo.FMLConfig/CORE]: Configuration file H:\AutoMods\mods\tiered-iron-chests\neoforge\run\config\fml.toml is not correct. Correcting
+[11:06:08] [main/INFO] [ne.ne.fm.lo.mo.lo.JarInJarDependencyLocator/]: Found 2 dependencies adding them to mods collection
+[11:06:08] [main/INFO] [ne.ne.fm.lo.mo.ModDiscoverer/]: 
+     Mod List:
+		Name Version (Mod Id)
+
+		Minecraft 1.21.1 (minecraft)
+		NeoForge 21.1.250 (neoforge)
+		Tiered Iron Chests 1.0.0 (tieredironchests)
+[11:06:09] [main/INFO] [mixin/]: Compatibility level set to JAVA_21
+[11:06:09] [main/INFO] [cp.mo.mo.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgeserverdev' with arguments [--gameDir, ., --nogui]
+[11:06:12] [main/INFO] [MixinExtras|Service/]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.3).
+[11:06:18] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[11:06:18] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[11:06:18] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[11:06:18] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[11:06:18] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[11:06:18] [modloading-worker-0/INFO] [ne.ne.ne.co.NeoForgeMod/NEOFORGE-MOD]: NeoForge mod loading, version 21.1.250, for MC 1.21.1
+[11:06:18] [modloading-worker-0/INFO] [tieredironchests/]: Tiered Iron Chests (NeoForge) registered 5 chest tiers (5 blocks, block entities, menus and upgrade kits)
+[11:06:18] [main/INFO] [mojang/YggdrasilAuthenticationService]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, name=PROD]
+[11:06:18] [main/WARN] [ne.ne.ne.co.CommonHooks/WP]: The following mods have version differences that were not resolved:
+forge (version 47.1.106 -> MISSING)
+Things may not work well.
+[11:06:18] [main/WARN] [minecraft/VanillaPackResourcesBuilder]: Assets URL 'union:/H:/AutoMods/mods/tiered-iron-chests/neoforge/build/moddev/artifacts/neoforge-21.1.250.jar%23125!/assets/.mcassetsroot' uses unexpected schema
+[11:06:18] [main/WARN] [minecraft/VanillaPackResourcesBuilder]: Assets URL 'union:/H:/AutoMods/mods/tiered-iron-chests/neoforge/build/moddev/artifacts/neoforge-21.1.250.jar%23125!/data/.mcassetsroot' uses unexpected schema
+[11:06:18] [main/WARN] [minecraft/MinecraftServer]: Missing data pack mod:tieredironchests
+[11:06:18] [main/WARN] [minecraft/MinecraftServer]: Missing data pack mod:forge
+[11:06:20] [main/INFO] [minecraft/RecipeManager]: Loaded 1305 recipes
+[11:06:20] [main/INFO] [minecraft/AdvancementTree]: Loaded 1414 advancements
+[11:06:20] [Server thread/INFO] [minecraft/DedicatedServer]: Starting minecraft server version 1.21.1
+[11:06:20] [Server thread/INFO] [minecraft/DedicatedServer]: Loading properties
+[11:06:20] [Server thread/INFO] [minecraft/DedicatedServer]: Default game type: SURVIVAL
+[11:06:20] [Server thread/INFO] [minecraft/MinecraftServer]: Generating keypair
+[11:06:20] [Server thread/INFO] [minecraft/DedicatedServer]: Starting Minecraft server on *:25565
+[11:06:20] [Server thread/INFO] [minecraft/ServerConnectionListener]: Using default channel type
+[11:06:20] [Server thread/WARN] [minecraft/DedicatedServer]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[11:06:20] [Server thread/WARN] [minecraft/DedicatedServer]: The server will make no attempt to authenticate usernames. Beware.
+[11:06:20] [Server thread/WARN] [minecraft/DedicatedServer]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[11:06:20] [Server thread/WARN] [minecraft/DedicatedServer]: To change this, set "online-mode" to "true" in the server.properties file.
+[11:06:20] [Server thread/INFO] [minecraft/DedicatedServer]: Preparing level "world"
+[11:06:21] [Server thread/INFO] [minecraft/MinecraftServer]: Preparing start region for dimension minecraft:overworld
+[11:06:22] [worldgen/INFO] [minecraft/LoggerChunkProgressListener]: Preparing spawn area: 0%
+[11:06:22] [worldgen/INFO] [minecraft/LoggerChunkProgressListener]: Preparing spawn area: 0%
+[11:06:22] [Server thread/INFO] [minecraft/LoggerChunkProgressListener]: Time elapsed: 748 ms
+[11:06:22] [Server thread/INFO] [minecraft/DedicatedServer]: Done (1.434s)! For help, type "help"
+[11:06:22] [Server thread/INFO] [ne.ne.ne.ga.GameTestHooks/]: Enabled Gametest Namespaces: []
+[11:06:22] [Server thread/INFO] [ne.ne.ne.se.pe.PermissionAPI/]: Successfully initialized permission handler neoforge:default_handler
+[11:06:23] [Server thread/INFO] [minecraft/MinecraftServer]: There are 2 data pack(s) enabled: [vanilla (built-in)], [mod_data]
+[11:06:23] [Server thread/INFO] [minecraft/MinecraftServer]: There are no more data packs available
+[11:06:32] [Server thread/INFO] [minecraft/MinecraftServer]: Stopping the server
+[11:06:32] [Server thread/INFO] [minecraft/MinecraftServer]: Stopping server
+[11:06:32] [Server thread/INFO] [minecraft/MinecraftServer]: Saving players
+[11:06:32] [Server thread/INFO] [minecraft/MinecraftServer]: Saving worlds
+[11:06:32] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[world]'/minecraft:overworld
+[11:06:32] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[world]'/minecraft:the_end
+[11:06:32] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[world]'/minecraft:the_nether
+[11:06:32] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage (world): All chunks are saved
+[11:06:32] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[11:06:32] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[11:06:32] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage: All dimensions are saved
+
+BUILD SUCCESSFUL in 31s
+8 actionable tasks: 4 executed, 4 up-to-date
