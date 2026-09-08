@@ -1,0 +1,30 @@
+// Root build: loads both loader plugins once (shared classloader), applies nothing itself.
+// `.\gradlew.bat build` builds common/ (compile check only), fabric/ and neoforge/ jars.
+plugins {
+    id 'net.fabricmc.fabric-loom-remap' version "${loom_version}" apply false
+    id 'net.neoforged.moddev' version "${moddev_version}" apply false
+}
+
+subprojects {
+    apply plugin: 'java'
+
+    version = rootProject.mod_version
+    group = rootProject.mod_group_id
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(rootProject.java_version as int)
+        }
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = 'UTF-8'
+        options.release = rootProject.java_version as int
+    }
+
+    tasks.withType(Jar).configureEach {
+        from(rootProject.file('LICENSE')) {
+            rename { "${it}_${rootProject.mod_id}" }
+        }
+    }
+}

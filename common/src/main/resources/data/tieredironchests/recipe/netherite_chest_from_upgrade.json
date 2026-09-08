@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "tieredironchests:diamond_to_netherite_chest_upgrade"
+    },
+    {
+      "item": "tieredironchests:diamond_chest"
+    }
+  ],
+  "result": {
+    "id": "tieredironchests:netherite_chest",
+    "count": 1
+  }
+}

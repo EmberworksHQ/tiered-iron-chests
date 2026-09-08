@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "tieredironchests:copper_to_iron_chest_upgrade"
+    },
+    {
+      "item": "tieredironchests:copper_chest"
+    }
+  ],
+  "result": {
+    "id": "tieredironchests:iron_chest",
+    "count": 1
+  }
+}

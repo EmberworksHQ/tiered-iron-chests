@@ -1,0 +1,25 @@
+# Gradle
+.gradle/
+build/
+**/build/
+# Run dirs
+run/
+runs/
+**/run/
+**/runs/
+# IDE
+.idea/
+*.iml
+.vscode/
+.eclipse/
+.settings/
+.classpath
+.project
+bin/
+# Logs / OS
+*.log
+logs/
+.DS_Store
+Thumbs.db
+# Release jars copied aside per MC version (build/ is wiped by clean)
+dist/

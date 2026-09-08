@@ -1,0 +1,18 @@
+{
+  "block.tieredironchests.copper_chest": "Copper Chest",
+  "block.tieredironchests.iron_chest": "Iron Chest",
+  "block.tieredironchests.gold_chest": "Gold Chest",
+  "block.tieredironchests.diamond_chest": "Diamond Chest",
+  "block.tieredironchests.netherite_chest": "Netherite Chest",
+  "container.tieredironchests.copper_chest": "Copper Chest",
+  "container.tieredironchests.iron_chest": "Iron Chest",
+  "container.tieredironchests.gold_chest": "Gold Chest",
+  "container.tieredironchests.diamond_chest": "Diamond Chest",
+  "container.tieredironchests.netherite_chest": "Netherite Chest",
+  "item.tieredironchests.wood_to_copper_chest_upgrade": "Wood to Copper Chest Upgrade",
+  "item.tieredironchests.copper_to_iron_chest_upgrade": "Copper to Iron Chest Upgrade",
+  "item.tieredironchests.iron_to_gold_chest_upgrade": "Iron to Gold Chest Upgrade",
+  "item.tieredironchests.gold_to_diamond_chest_upgrade": "Gold to Diamond Chest Upgrade",
+  "item.tieredironchests.diamond_to_netherite_chest_upgrade": "Diamond to Netherite Chest Upgrade",
+  "item.tieredironchests.chest_upgrade.tooltip": "Craft with %s to make %s"
+}

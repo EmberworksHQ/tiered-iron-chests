@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "X": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "pattern": [
+    "GGG",
+    "DXD",
+    "GGG"
+  ],
+  "result": {
+    "id": "tieredironchests:gold_to_diamond_chest_upgrade",
+    "count": 1
+  }
+}

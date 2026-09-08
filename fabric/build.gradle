@@ -1,0 +1,41 @@
+plugins {
+    // 'fabric-loom-remap' = Loom >= 1.14 plugin id for obfuscated MC versions (<= 1.21.11)
+    id 'net.fabricmc.fabric-loom-remap'
+}
+
+base {
+    archivesName = "${mod_id}-fabric-${minecraft_version}"
+}
+
+repositories {
+    // Loom adds Fabric + Mojang mavens automatically.
+}
+
+loom {
+    // Opens the handful of vanilla registration entry points that are private in the obfuscated jar (see the file).
+    accessWidenerPath = file('src/main/resources/tieredironchests.accesswidener')
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${minecraft_version}"
+    // Mojang mappings so common/ sources compile unchanged under both loaders.
+    mappings loom.officialMojangMappings()
+    modImplementation "net.fabricmc:fabric-loader:${loader_version}"
+    // Fabric API IS required on Fabric (declared in fabric.mod.json): the loader alone neither injects mod jars as
+    // resource/data packs (fabric-resource-loader-v0) nor syncs registry ids to clients (fabric-registry-sync-v0).
+    // A block/item mod needs both. Registration itself still goes through vanilla Registry.register.
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
+}
+
+// common/ is compiled into this jar (single shippable artifact, no jar-in-jar).
+sourceSets.main {
+    java.srcDir rootProject.file('common/src/main/java')
+    resources.srcDir rootProject.file('common/src/main/resources')
+}
+
+processResources {
+    inputs.property 'version', project.version
+    filesMatching('fabric.mod.json') {
+        expand 'version': project.version
+    }
+}

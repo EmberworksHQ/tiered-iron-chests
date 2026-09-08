@@ -1,0 +1,33 @@
+modLoader="javafml"
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
+issueTrackerURL="https://github.com/AutoMods/tiered-iron-chests/issues"
+
+[[mods]]
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
+authors="AutoMods"
+displayURL="https://modrinth.com/mod/tiered-iron-chests"
+logoFile="assets/tieredironchests/icon.png"
+description='''
+The classic chest progression - copper, iron, gold, diamond, netherite - rebuilt for modern Minecraft.
+Upgrade kits, hoppers and comparators just work, zero dependencies.
+'''
+
+[[mixins]]
+config="tieredironchests.mixins.json"
+
+[[dependencies.${mod_id}]]
+    modId="neoforge"
+    type="required"
+    versionRange="[${neo_version},)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="minecraft"
+    type="required"
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"

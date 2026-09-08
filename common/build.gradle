@@ -1,0 +1,46 @@
+// common/: tier model, chest block/block-entity/menu/kit logic, client renderer/screen and mixins.
+// Compiled here against vanilla Minecraft (Mojang mappings) purely as a "no loader imports" check;
+// the shipped jars are built by fabric/ and neoforge/, which compile these sources themselves.
+plugins {
+    id 'net.fabricmc.fabric-loom-remap'
+}
+
+base {
+    archivesName = "${mod_id}-common"
+}
+
+loom {
+    // Same widener as the Fabric jar so this loader-free compile sees the same vanilla surface NeoForge's access
+    // transformers already expose (MenuType constructor, BlockEntitySupplier, ...).
+    accessWidenerPath = rootProject.file('fabric/src/main/resources/tieredironchests.accesswidener')
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${minecraft_version}"
+    mappings loom.officialMojangMappings()
+    // Compile-only: supplies the Mixin annotations. No loader class is referenced from common/ code
+    // (enforced by the checkNoLoaderImports task below).
+    modCompileOnly "net.fabricmc:fabric-loader:${loader_version}"
+}
+
+tasks.register('checkNoLoaderImports') {
+    description = 'Fails if common/ references a mod-loader package.'
+    def srcDir = file('src/main/java')
+    inputs.dir srcDir
+    doLast {
+        def offenders = []
+        srcDir.eachFileRecurse { f ->
+            if (f.name.endsWith('.java')) {
+                f.eachLine { line ->
+                    if (line =~ /^\s*import\s+net\.(fabricmc|neoforged|minecraftforge)\./) {
+                        offenders << "${f.name}: ${line.trim()}"
+                    }
+                }
+            }
+        }
+        if (!offenders.isEmpty()) {
+            throw new GradleException("common/ must not import loader classes:\n  " + offenders.join("\n  "))
+        }
+    }
+}
+tasks.named('check') { dependsOn 'checkNoLoaderImports' }

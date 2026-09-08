@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "O": {
+      "item": "minecraft:obsidian"
+    },
+    "N": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "X": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "pattern": [
+    "OOO",
+    "NXN",
+    "OOO"
+  ],
+  "result": {
+    "id": "tieredironchests:diamond_to_netherite_chest_upgrade",
+    "count": 1
+  }
+}

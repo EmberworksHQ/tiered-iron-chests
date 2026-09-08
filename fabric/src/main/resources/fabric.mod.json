@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "tieredironchests",
+  "version": "${version}",
+  "name": "Tiered Iron Chests",
+  "description": "The classic chest progression - copper, iron, gold, diamond, netherite - rebuilt for modern Minecraft. Upgrade kits, hoppers and comparators just work.",
+  "authors": [
+    "AutoMods"
+  ],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/tiered-iron-chests",
+    "sources": "https://github.com/AutoMods/tiered-iron-chests",
+    "issues": "https://github.com/AutoMods/tiered-iron-chests/issues"
+  },
+  "license": "MIT",
+  "icon": "assets/tieredironchests/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.automods.tieredironchests.fabric.TieredIronChestsFabric"
+    ],
+    "client": [
+      "com.automods.tieredironchests.fabric.TieredIronChestsFabricClient"
+    ]
+  },
+  "mixins": [
+    "tieredironchests.mixins.json"
+  ],
+  "accessWidener": "tieredironchests.accesswidener",
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "fabric-api": "*",
+    "minecraft": "=1.21.1",
+    "java": ">=21"
+  }
+}

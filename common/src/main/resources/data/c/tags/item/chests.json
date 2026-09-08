@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "tieredironchests:copper_chest",
+    "tieredironchests:iron_chest",
+    "tieredironchests:gold_chest",
+    "tieredironchests:diamond_chest",
+    "tieredironchests:netherite_chest"
+  ]
+}

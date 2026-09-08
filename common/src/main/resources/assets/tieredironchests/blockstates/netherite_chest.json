@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "tieredironchests:block/netherite_chest"
+    }
+  }
+}

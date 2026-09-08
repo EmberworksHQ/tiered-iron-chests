@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "tieredironchests:gold_to_diamond_chest_upgrade"
+    },
+    {
+      "item": "tieredironchests:gold_chest"
+    }
+  ],
+  "result": {
+    "id": "tieredironchests:diamond_chest",
+    "count": 1
+  }
+}

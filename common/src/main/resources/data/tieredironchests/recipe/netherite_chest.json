@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "O": {
+      "item": "minecraft:obsidian"
+    },
+    "N": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "X": {
+      "item": "tieredironchests:diamond_chest"
+    }
+  },
+  "pattern": [
+    "OOO",
+    "NXN",
+    "OOO"
+  ],
+  "result": {
+    "id": "tieredironchests:netherite_chest",
+    "count": 1
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "X": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "GGG",
+    "GXG",
+    "GGG"
+  ],
+  "result": {
+    "id": "tieredironchests:iron_to_gold_chest_upgrade",
+    "count": 1
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "tieredironchests:item/diamond_to_netherite_chest_upgrade"
+  }
+}

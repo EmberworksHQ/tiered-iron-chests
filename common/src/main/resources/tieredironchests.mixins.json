@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.automods.tieredironchests.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "CatSitOnBlockGoalMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

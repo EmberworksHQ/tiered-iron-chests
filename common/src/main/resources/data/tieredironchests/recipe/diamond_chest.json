@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "X": {
+      "item": "tieredironchests:gold_chest"
+    }
+  },
+  "pattern": [
+    "GGG",
+    "DXD",
+    "GGG"
+  ],
+  "result": {
+    "id": "tieredironchests:diamond_chest",
+    "count": 1
+  }
+}
