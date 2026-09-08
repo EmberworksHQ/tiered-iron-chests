@@ -14,6 +14,15 @@ repositories {
 loom {
     // Opens the handful of vanilla registration entry points that are private in the obfuscated jar (see the file).
     accessWidenerPath = file('src/main/resources/tieredironchests.accesswidener')
+
+    // Mixin refmap (QA B1). Loom >= 1.11 no longer runs the Mixin annotation processor by default: remapJar rewrites
+    // the annotation strings to intermediary in place (tiny-remapper mixin extension), which works but leaves no
+    // refmap to audit in the artifact. Opt back into the AP so the Fabric jar carries the same, verifiable shape as
+    // the Forge jar: <mod_id>.refmap.json (named -> intermediary) + a "refmap" key in the packaged mixin config.
+    mixin {
+        useLegacyMixinAp = true
+        defaultRefmapName = "${mod_id}.refmap.json"
+    }
 }
 
 dependencies {

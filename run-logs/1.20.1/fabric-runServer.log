@@ -1,0 +1,112 @@
+
+> Configure project :common
+Fabric Loom: 1.17.20
+
+> Configure project :fabric
+Fabric Loom: 1.17.20
+
+> Task :fabric:compileJava UP-TO-DATE
+> Task :fabric:processResources UP-TO-DATE
+> Task :fabric:classes UP-TO-DATE
+> Task :fabric:generateLog4jConfig UP-TO-DATE
+> Task :fabric:generateRemapClasspath UP-TO-DATE
+> Task :fabric:generateDLIConfig UP-TO-DATE
+> Task :fabric:configureLaunch UP-TO-DATE
+
+> Task :fabric:runServer
+[11:02:10] [main/INFO] (FabricLoader/GameProvider) Loading Minecraft 1.20.1 with Fabric Loader 0.16.14
+[11:02:10] [main/INFO] (FabricLoader) Loading 47 mods:
+	- fabric-api 0.92.12+1.20.1
+	- fabric-api-base 0.4.32+1802ada577
+	- fabric-api-lookup-api-v1 1.6.37+1802ada577
+	- fabric-biome-api-v1 13.0.15+93aa238b77
+	- fabric-block-api-v1 1.0.12+1802ada577
+	- fabric-block-view-api-v2 1.0.3+924f046a77
+	- fabric-command-api-v1 1.2.35+f71b366f77
+	- fabric-command-api-v2 2.2.14+1802ada577
+	- fabric-commands-v0 0.2.52+df3654b377
+	- fabric-containers-v0 0.1.68+df3654b377
+	- fabric-content-registries-v0 4.0.13+1802ada577
+	- fabric-convention-tags-v1 1.5.6+1802ada577
+	- fabric-crash-report-info-v1 0.2.20+1802ada577
+	- fabric-data-attachment-api-v1 1.0.2+de0fd6d177
+	- fabric-data-generation-api-v1 12.4.0+238242b777
+	- fabric-dimensions-v1 2.1.55+1802ada577
+	- fabric-entity-events-v1 1.6.1+1c78457f77
+	- fabric-events-interaction-v0 0.6.6+13a40c6677
+	- fabric-events-lifecycle-v0 0.2.64+df3654b377
+	- fabric-game-rule-api-v1 1.0.41+1802ada577
+	- fabric-gametest-api-v1 1.2.15+1802ada577
+	- fabric-item-api-v1 2.1.29+1802ada577
+	- fabric-item-group-api-v1 4.0.14+1802ada577
+	- fabric-lifecycle-events-v1 2.2.23+1802ada577
+	- fabric-loot-api-v2 1.2.3+1802ada577
+	- fabric-loot-tables-v1 1.1.47+9e7660c677
+	- fabric-message-api-v1 5.1.10+1802ada577
+	- fabric-mining-level-api-v1 2.1.52+1802ada577
+	- fabric-networking-api-v1 1.3.15+0caff8d077
+	- fabric-networking-v0 0.3.55+df3654b377
+	- fabric-object-builder-api-v1 11.1.5+e35120df77
+	- fabric-particles-v1 1.1.3+1802ada577
+	- fabric-recipe-api-v1 1.0.25+1802ada577
+	- fabric-registry-sync-v0 2.4.1+4c0a70e677
+	- fabric-rendering-data-attachment-v1 0.3.39+92a0d36777
+	- fabric-rendering-fluids-v1 3.0.29+1802ada577
+	- fabric-resource-conditions-api-v1 2.3.9+1802ada577
+	- fabric-resource-loader-v0 0.11.12+fb82e9d777
+	- fabric-screen-handler-api-v1 1.3.34+1802ada577
+	- fabric-tag-api-v1 1.3.0+238242b777
+	- fabric-transfer-api-v1 3.3.6+8dd72ea377
+	- fabric-transitive-access-wideners-v1 4.3.2+1802ada577
+	- fabricloader 0.16.14
+	- java 17
+	- minecraft 1.20.1
+	- mixinextras 0.4.1
+	- tieredironchests 1.0.0
+[11:02:10] [main/INFO] (FabricLoader/Mixin) SpongePowered MIXIN Subsystem Version=0.8.7 Source=file:/C:/Users/Liam/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.15.5+mixin.0.8.7/22f9eb729e216a091673a574a5906dc1b9027fb3/sponge-mixin-0.15.5+mixin.0.8.7.jar Service=Knot/Fabric Env=SERVER
+[11:02:10] [main/INFO] (FabricLoader/Mixin) Loaded Fabric development mappings for mixin remapper!
+[11:02:10] [main/INFO] (FabricLoader/Mixin) Compatibility level set to JAVA_16
+[11:02:10] [main/INFO] (FabricLoader/Mixin) Compatibility level set to JAVA_17
+[11:02:11] [main/INFO] (FabricLoader/MixinExtras|Service) Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.4.1).
+[11:02:18] [main/INFO] (tieredironchests) Tiered Iron Chests (Fabric) registered 5 chest tiers (5 blocks, block entities, menus and upgrade kits)
+[11:02:18] [main/INFO] (Minecraft) Environment: authHost='https://authserver.mojang.com', accountsHost='https://api.mojang.com', sessionHost='https://sessionserver.mojang.com', servicesHost='https://api.minecraftservices.com', name='PROD'
+[11:02:20] [main/INFO] (Minecraft) Loaded 7 recipes
+[11:02:20] [main/INFO] (Minecraft) Loaded 1286 advancements
+[11:02:21] [main/INFO] (BiomeModificationImpl) Applied 0 biome modifications to 0 of 64 new biomes in 1.715 ms
+[11:02:21] [Server thread/INFO] (Minecraft) Starting minecraft server version 1.20.1
+[11:02:21] [Server thread/INFO] (Minecraft) Loading properties
+[11:02:21] [Server thread/INFO] (Minecraft) Default game type: SURVIVAL
+[11:02:21] [Server thread/INFO] (Minecraft) Generating keypair
+[11:02:21] [Server thread/INFO] (Minecraft) Starting Minecraft server on *:25565
+[11:02:21] [Server thread/INFO] (Minecraft) Using default channel type
+[11:02:22] [Server thread/INFO] (Minecraft) Preparing level "world"
+[11:02:24] [Server thread/INFO] (Minecraft) Preparing start region for dimension minecraft:overworld
+[11:02:24] [Server thread/INFO] (Minecraft) Preparing spawn area: 0%
+[11:02:25] [Worker-Main-16/INFO] (Minecraft) Preparing spawn area: 83%
+[11:02:25] [Worker-Main-31/INFO] (Minecraft) Preparing spawn area: 83%
+[11:02:26] [Worker-Main-7/INFO] (Minecraft) Preparing spawn area: 83%
+[11:02:26] [Worker-Main-6/INFO] (Minecraft) Preparing spawn area: 83%
+[11:02:27] [Worker-Main-8/INFO] (Minecraft) Preparing spawn area: 83%
+[11:02:27] [Worker-Main-27/INFO] (Minecraft) Preparing spawn area: 83%
+[11:02:28] [Worker-Main-25/INFO] (Minecraft) Preparing spawn area: 83%
+[11:02:28] [Worker-Main-2/INFO] (Minecraft) Preparing spawn area: 85%
+[11:02:29] [Worker-Main-29/INFO] (Minecraft) Preparing spawn area: 89%
+[11:02:29] [Worker-Main-11/INFO] (Minecraft) Preparing spawn area: 93%
+[11:02:30] [Server thread/INFO] (Minecraft) Time elapsed: 5229 ms
+[11:02:30] [Server thread/INFO] (Minecraft) Done (7.198s)! For help, type "help"
+[11:02:31] [Server thread/INFO] (Minecraft) There are 2 data pack(s) enabled: [vanilla (built-in)], [fabric (Fabric mod)]
+[11:02:31] [Server thread/INFO] (Minecraft) There are no more data packs available
+[11:02:40] [Server thread/INFO] (Minecraft) Stopping the server
+[11:02:40] [Server thread/INFO] (Minecraft) Stopping server
+[11:02:40] [Server thread/INFO] (Minecraft) Saving players
+[11:02:40] [Server thread/INFO] (Minecraft) Saving worlds
+[11:02:40] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[world]'/minecraft:overworld
+[11:02:41] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[world]'/minecraft:the_end
+[11:02:41] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[world]'/minecraft:the_nether
+[11:02:41] [Server thread/INFO] (Minecraft) ThreadedAnvilChunkStorage (world): All chunks are saved
+[11:02:41] [Server thread/INFO] (Minecraft) ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[11:02:41] [Server thread/INFO] (Minecraft) ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[11:02:41] [Server thread/INFO] (Minecraft) ThreadedAnvilChunkStorage: All dimensions are saved
+
+BUILD SUCCESSFUL in 36s
+6 actionable tasks: 1 executed, 5 up-to-date

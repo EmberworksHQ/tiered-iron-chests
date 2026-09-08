@@ -56,6 +56,12 @@ dependencies {
     annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
 }
 
+// Headless smoke tests (tools/smoke_server.py) drive the dev server through its console: forward Gradle's stdin to
+// the run tasks the way Loom does, so `stop` / `datapack list` reach the game instead of being dropped.
+tasks.withType(JavaExec).matching { it.name in ['runServer', 'runClient'] }.configureEach {
+    standardInput = System.in
+}
+
 // common/ is compiled into this jar (single shippable artifact).
 sourceSets.main {
     java.srcDir rootProject.file('common/src/main/java')

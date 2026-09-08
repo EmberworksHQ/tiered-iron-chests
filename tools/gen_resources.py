@@ -7,11 +7,13 @@
 
 Writes into common/src/main/resources:
   assets/tieredironchests/lang/en_us.json, blockstates/, models/block/, models/item/
-  data/tieredironchests/<loot tables>/blocks/, <recipes>/, data/minecraft/tags (mineable/pickaxe), data/c (+ data/forge on 1.20.1)
+  data/tieredironchests/<loot tables>/blocks/, <recipes>/, <advancements>/recipes/misc/ (recipe-book unlocks),
+  data/minecraft/tags (mineable/pickaxe), data/c (+ data/forge on 1.20.1)
   placeholder textures + mod icon, only when the file does not exist yet (see art/TEXTURE-SPEC.md for the real art)
 
-Per-version differences handled here: data folder names (recipe/recipes, loot_table/loot_tables, tags/block vs tags/blocks),
-recipe result key (id vs item) and the loot-table name-copy function (copy_components vs copy_name).
+Per-version differences handled here: data folder names (recipe/recipes, loot_table/loot_tables, tags/block vs tags/blocks,
+advancement/advancements), recipe result key (id vs item), the loot-table name-copy function (copy_components vs
+copy_name) and the advancement item-predicate shape ("items": "#tag" vs "tag": ...).
 """
 import argparse
 import json
@@ -36,16 +38,17 @@ TIERS = [
 ]
 
 # Crafting: 'X' in the pattern is the centre slot (kit: previous-tier material, direct: previous-tier chest).
+# 'material' is the tier's signature ingredient; it and the centre ingredient unlock the recipe in the recipe book.
 RECIPES = {
-    "copper": {"pattern": ["CCC", "CXC", "CCC"], "keys": {"C": {"item": "minecraft:copper_ingot"}},
+    "copper": {"material": {"item": "minecraft:copper_ingot"}, "pattern": ["CCC", "CXC", "CCC"], "keys": {"C": {"item": "minecraft:copper_ingot"}},
                "kit_center": {"tag": "minecraft:planks"}, "direct_center": {"item": "minecraft:chest"}},
-    "iron": {"pattern": ["III", "IXI", "III"], "keys": {"I": {"item": "minecraft:iron_ingot"}},
+    "iron": {"material": {"item": "minecraft:iron_ingot"}, "pattern": ["III", "IXI", "III"], "keys": {"I": {"item": "minecraft:iron_ingot"}},
              "kit_center": {"item": "minecraft:copper_ingot"}, "direct_center": {"item": f"{MOD_ID}:copper_chest"}},
-    "gold": {"pattern": ["GGG", "GXG", "GGG"], "keys": {"G": {"item": "minecraft:gold_ingot"}},
+    "gold": {"material": {"item": "minecraft:gold_ingot"}, "pattern": ["GGG", "GXG", "GGG"], "keys": {"G": {"item": "minecraft:gold_ingot"}},
              "kit_center": {"item": "minecraft:iron_ingot"}, "direct_center": {"item": f"{MOD_ID}:iron_chest"}},
-    "diamond": {"pattern": ["GGG", "DXD", "GGG"], "keys": {"G": {"item": "minecraft:glass"}, "D": {"item": "minecraft:diamond"}},
+    "diamond": {"material": {"item": "minecraft:diamond"}, "pattern": ["GGG", "DXD", "GGG"], "keys": {"G": {"item": "minecraft:glass"}, "D": {"item": "minecraft:diamond"}},
                 "kit_center": {"item": "minecraft:gold_ingot"}, "direct_center": {"item": f"{MOD_ID}:gold_chest"}},
-    "netherite": {"pattern": ["OOO", "NXN", "OOO"], "keys": {"O": {"item": "minecraft:obsidian"}, "N": {"item": "minecraft:netherite_ingot"}},
+    "netherite": {"material": {"item": "minecraft:netherite_ingot"}, "pattern": ["OOO", "NXN", "OOO"], "keys": {"O": {"item": "minecraft:obsidian"}, "N": {"item": "minecraft:netherite_ingot"}},
                   "kit_center": {"item": "minecraft:diamond"}, "direct_center": {"item": f"{MOD_ID}:diamond_chest"}},
 }
 
@@ -75,6 +78,8 @@ class Layout:
         self.block_tag_dir = "tags/block" if modern else "tags/blocks"
         self.item_tag_dir = "tags/item" if modern else "tags/items"
         self.result_key = "id" if modern else "item"
+        self.advancement_dir = "advancement" if modern else "advancements"
+        self.modern = modern
         self.copy_name_function = (
             {"function": "minecraft:copy_components", "source": "block_entity", "include": ["minecraft:custom_name"]}
             if modern else
@@ -170,6 +175,56 @@ def gen_recipes(res, layout):
             "ingredients": [{"item": f"{MOD_ID}:{kit}"}, spec["direct_center"]],
             "result": result(layout, f"{MOD_ID}:{name}"),
         })
+
+
+def item_criterion(layout, ingredient):
+    """inventory_changed criterion for one recipe ingredient ({"item": id} / {"tag": id}), in the version's vanilla shape."""
+    if "tag" in ingredient:
+        tag = ingredient["tag"]
+        crit = "has_" + tag.split(":", 1)[1].replace("/", "_")
+        predicate = {"items": "#" + tag} if layout.modern else {"tag": tag}
+    else:
+        item = ingredient["item"]
+        crit = "has_" + item.split(":", 1)[1].replace("/", "_")
+        predicate = {"items": item} if layout.modern else {"items": [item]}
+    return crit, {"conditions": {"items": [predicate]}, "trigger": "minecraft:inventory_changed"}
+
+
+def recipe_advancement(layout, recipe_id, ingredients):
+    """Same shape vanilla uses for its own recipe unlocks: child of recipes/root, any has_<ingredient> OR has_the_recipe
+    grants the recipe. Not a visible advancement (no display)."""
+    criteria = {}
+    for ingredient in ingredients:
+        crit, body = item_criterion(layout, ingredient)
+        criteria[crit] = body
+    criteria["has_the_recipe"] = {"conditions": {"recipe": recipe_id}, "trigger": "minecraft:recipe_unlocked"}
+    adv = {
+        "parent": "minecraft:recipes/root",
+        "criteria": criteria,
+        "requirements": [list(criteria)],
+        "rewards": {"recipes": [recipe_id]},
+    }
+    if not layout.modern:
+        adv["sends_telemetry_event"] = False  # 1.20.1 vanilla emits it explicitly
+    return adv
+
+
+def gen_advancements(res, layout):
+    out = os.path.join(res, "data", MOD_ID, layout.advancement_dir, "recipes", "misc")
+    for tier in TIERS:
+        spec = RECIPES[tier["name"]]
+        name = block_name(tier)
+        kit = kit_name(tier)
+        # kit: tier material or the material it is wrapped around
+        write_json(os.path.join(out, f"{kit}.json"),
+                   recipe_advancement(layout, f"{MOD_ID}:{kit}", [spec["material"], spec["kit_center"]]))
+        # direct upgrade: tier material or the previous-tier chest
+        write_json(os.path.join(out, f"{name}.json"),
+                   recipe_advancement(layout, f"{MOD_ID}:{name}", [spec["material"], spec["direct_center"]]))
+        # kit + previous chest: the kit or the previous-tier chest
+        write_json(os.path.join(out, f"{name}_from_upgrade.json"),
+                   recipe_advancement(layout, f"{MOD_ID}:{name}_from_upgrade",
+                                      [{"item": f"{MOD_ID}:{kit}"}, spec["direct_center"]]))
 
 
 def gen_tags(res, layout):
@@ -295,6 +350,7 @@ def main():
     gen_models(res)
     gen_loot(res, layout)
     gen_recipes(res, layout)
+    gen_advancements(res, layout)
     gen_tags(res, layout)
     written, total = gen_textures(res, args.force_textures)
     print(f"resources generated for MC {args.mc} in {res} (textures written: {written}/{total})")

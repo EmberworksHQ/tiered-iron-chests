@@ -6,6 +6,7 @@ import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 
 import java.util.Optional;
 
@@ -91,13 +92,19 @@ public enum ChestTier implements StringRepresentable {
         return ordinal() == 0 ? Optional.empty() : Optional.of(values()[ordinal() - 1]);
     }
 
-    /** Vanilla-style block properties; only netherite differs (blast resistance). Any tool drops the block. */
+    /**
+     * Vanilla-style block properties; only netherite differs (blast resistance). Any tool drops the block.
+     * {@code pushReaction(BLOCK)} mirrors {@code Blocks.CHEST} (pistons already refuse block-entity blocks, so this only
+     * matters to mods that read the reaction). Deliberately NOT {@code ignitedByLava()}: the vanilla wooden chest burns,
+     * these metal chests do not.
+     */
     public BlockBehaviour.Properties blockProperties() {
         float resistance = this == NETHERITE ? NETHERITE_EXPLOSION_RESISTANCE : DEFAULT_EXPLOSION_RESISTANCE;
         return BlockBehaviour.Properties.of()
                 .mapColor(mapColor())
                 .strength(DESTROY_TIME, resistance)
-                .sound(soundType());
+                .sound(soundType())
+                .pushReaction(PushReaction.BLOCK);
     }
 
     private MapColor mapColor() {

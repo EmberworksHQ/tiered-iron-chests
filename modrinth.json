@@ -1,0 +1,37 @@
+{
+  "slug": "tiered-iron-chests",
+  "title": "Tiered Iron Chests",
+  "description": "Copper, iron, gold, diamond and netherite chests (27-108 slots) that behave exactly like vanilla chests. Upgrade kits, hoppers and comparators just work. Fabric (needs Fabric API) & Forge/NeoForge 47 (no deps).",
+  "body_file": "listing/modrinth-body.md",
+  "categories": [
+    "storage",
+    "utility",
+    "adventure"
+  ],
+  "client_side": "required",
+  "server_side": "required",
+  "license": "mit",
+  "issues_url": "https://github.com/AutoMods/tiered-iron-chests/issues",
+  "source_url": "https://github.com/AutoMods/tiered-iron-chests",
+  "loaders": [
+    "fabric",
+    "forge",
+    "neoforge"
+  ],
+  "game_versions": [
+    "1.20.1"
+  ],
+  "version_number": "1.0.0+1.20.1",
+  "changelog_file": "CHANGELOG.md",
+  "dependencies": [
+    {
+      "project_id": "P7dR8mSH",
+      "slug": "fabric-api",
+      "dependency_type": "required",
+      "loaders": [
+        "fabric"
+      ]
+    }
+  ],
+  "featured": true
+}
