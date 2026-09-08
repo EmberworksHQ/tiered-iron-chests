@@ -40,4 +40,4 @@ v1 keeps the block set tight by design: tiered chests don't pair into double che
 
 ## License & source
 
-MIT — github.com/AutoMods/tiered-iron-chests
+MIT — github.com/AutoModsStudio/tiered-iron-chests
