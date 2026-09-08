@@ -1,1 +1,1 @@
-The classic iron chests progression rebuilt for 1.21.1 & 1.20.1: copper→netherite, kits keep contents, hoppers work.
+The classic iron chests progression rebuilt for 1.21.1 & 1.20.1: copper→netherite tiers, upgrade kits, hoppers work.
