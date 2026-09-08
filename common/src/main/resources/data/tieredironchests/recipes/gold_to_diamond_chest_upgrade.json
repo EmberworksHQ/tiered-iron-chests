@@ -18,7 +18,7 @@
     "GGG"
   ],
   "result": {
-    "id": "tieredironchests:gold_to_diamond_chest_upgrade",
+    "item": "tieredironchests:gold_to_diamond_chest_upgrade",
     "count": 1
   }
 }

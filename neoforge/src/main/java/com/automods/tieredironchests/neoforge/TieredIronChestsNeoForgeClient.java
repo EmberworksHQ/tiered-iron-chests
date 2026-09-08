@@ -4,18 +4,19 @@ import com.automods.tieredironchests.ChestTier;
 import com.automods.tieredironchests.TieredChestContent;
 import com.automods.tieredironchests.client.TieredChestRenderer;
 import com.automods.tieredironchests.client.TieredChestScreen;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
-/** Client-only wiring, kept in its own class so the dedicated server never loads client classes. */
+/** Client-only wiring (Forge 47 packages), kept in its own class so the dedicated server never loads client classes. */
 final class TieredIronChestsNeoForgeClient {
     private TieredIronChestsNeoForgeClient() {
     }
 
     static void init(IEventBus modBus) {
         modBus.addListener(TieredIronChestsNeoForgeClient::onRegisterRenderers);
-        modBus.addListener(TieredIronChestsNeoForgeClient::onRegisterMenuScreens);
+        modBus.addListener(TieredIronChestsNeoForgeClient::onClientSetup);
     }
 
     private static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
@@ -24,9 +25,12 @@ final class TieredIronChestsNeoForgeClient {
         }
     }
 
-    private static void onRegisterMenuScreens(RegisterMenuScreensEvent event) {
-        for (ChestTier tier : ChestTier.values()) {
-            event.register(TieredChestContent.menuType(tier), TieredChestScreen::new);
-        }
+    /** 1.20.1 has no RegisterMenuScreensEvent; MenuScreens.register (public via Forge's access transformer) on the main thread. */
+    private static void onClientSetup(FMLClientSetupEvent event) {
+        event.enqueueWork(() -> {
+            for (ChestTier tier : ChestTier.values()) {
+                MenuScreens.register(TieredChestContent.menuType(tier), TieredChestScreen::new);
+            }
+        });
     }
 }

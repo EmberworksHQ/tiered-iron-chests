@@ -10,7 +10,7 @@
     }
   ],
   "result": {
-    "id": "tieredironchests:iron_chest",
+    "item": "tieredironchests:iron_chest",
     "count": 1
   }
 }

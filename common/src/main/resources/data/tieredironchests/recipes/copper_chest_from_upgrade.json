@@ -3,14 +3,14 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "tieredironchests:iron_to_gold_chest_upgrade"
+      "item": "tieredironchests:wood_to_copper_chest_upgrade"
     },
     {
-      "item": "tieredironchests:iron_chest"
+      "item": "minecraft:chest"
     }
   ],
   "result": {
-    "id": "tieredironchests:gold_chest",
+    "item": "tieredironchests:copper_chest",
     "count": 1
   }
 }

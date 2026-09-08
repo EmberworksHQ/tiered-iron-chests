@@ -15,7 +15,7 @@
     "CCC"
   ],
   "result": {
-    "id": "tieredironchests:copper_chest",
+    "item": "tieredironchests:copper_chest",
     "count": 1
   }
 }

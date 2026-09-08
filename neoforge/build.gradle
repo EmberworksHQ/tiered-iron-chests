@@ -1,14 +1,26 @@
 plugins {
     id 'java-library'
-    id 'net.neoforged.moddev'
+    // NeoForge 1.20.1 (47.1.x) needs the ModDevGradle legacy plugin (see docs/toolchain-matrix.md).
+    id 'net.neoforged.moddev.legacyforge'
 }
 
 base {
     archivesName = "${mod_id}-neoforge-${minecraft_version}"
 }
 
-neoForge {
-    version = project.neo_version
+repositories {
+    // Mixin annotation processor (org.spongepowered:mixin:<ver>:processor) used for refmap generation.
+    maven {
+        name = 'Sponge'
+        url = 'https://repo.spongepowered.org/repository/maven-public/'
+    }
+}
+
+legacyForge {
+    // NeoForge 1.20.1. For MinecraftForge use `version = "1.20.1-47.x.y"` instead.
+    enable {
+        neoForgeVersion = project.neo_version
+    }
 
     parchment {
         mappingsVersion = project.parchment_mappings_version
@@ -32,18 +44,50 @@ neoForge {
     }
 }
 
+// Forge 47 runs on SRG names, so the mixins need a refmap: MDG wires the Mixin AP into compileJava and
+// packs the generated refmap into the jar.
+mixin {
+    add sourceSets.main, "${mod_id}.refmap.json"
+    config "${mod_id}.mixins.json"
+}
+
+dependencies {
+    // Same Mixin version Forge 47.1 ships at runtime.
+    annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
+}
+
 // common/ is compiled into this jar (single shippable artifact).
 sourceSets.main {
     java.srcDir rootProject.file('common/src/main/java')
     resources.srcDir rootProject.file('common/src/main/resources')
 }
 
-// Expand ${...} placeholders in src/main/templates (neoforge.mods.toml) at build time.
+// The shared mixin config in common/ stays the single source of truth: this loader is the only one that needs
+// a "refmap" entry, so it is injected at build time instead of keeping a second, hand-synced copy of the file.
+processResources {
+    inputs.property 'refmap', "${mod_id}.refmap.json"
+    filesMatching("${mod_id}.mixins.json") {
+        filter { String line ->
+            line.contains('"compatibilityLevel"')
+                    ? line + System.lineSeparator() + "  \"refmap\": \"${mod_id}.refmap.json\","
+                    : line
+        }
+    }
+}
+
+jar {
+    manifest.attributes([
+            'MixinConfigs': "${mod_id}.mixins.json"
+    ])
+}
+
+// Expand ${...} placeholders in src/main/templates (META-INF/mods.toml) at build time.
 var generateModMetadata = tasks.register('generateModMetadata', ProcessResources) {
     var replaceProperties = [
             minecraft_version      : minecraft_version,
             minecraft_version_range: minecraft_version_range,
             neo_version            : neo_version,
+            neo_version_range      : neo_version_range,
             loader_version_range   : loader_version_range,
             mod_id                 : mod_id,
             mod_name               : mod_name,
@@ -56,4 +100,4 @@ var generateModMetadata = tasks.register('generateModMetadata', ProcessResources
     into 'build/generated/sources/modMetadata'
 }
 sourceSets.main.resources.srcDir generateModMetadata
-neoForge.ideSyncTask generateModMetadata
+legacyForge.ideSyncTask generateModMetadata

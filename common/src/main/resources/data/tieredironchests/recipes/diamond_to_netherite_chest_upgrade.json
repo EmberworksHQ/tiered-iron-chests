@@ -18,7 +18,7 @@
     "OOO"
   ],
   "result": {
-    "id": "tieredironchests:diamond_to_netherite_chest_upgrade",
+    "item": "tieredironchests:diamond_to_netherite_chest_upgrade",
     "count": 1
   }
 }

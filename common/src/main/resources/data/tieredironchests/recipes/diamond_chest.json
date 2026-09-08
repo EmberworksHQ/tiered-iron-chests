@@ -3,19 +3,22 @@
   "category": "misc",
   "key": {
     "G": {
-      "item": "minecraft:gold_ingot"
+      "item": "minecraft:glass"
+    },
+    "D": {
+      "item": "minecraft:diamond"
     },
     "X": {
-      "item": "minecraft:iron_ingot"
+      "item": "tieredironchests:gold_chest"
     }
   },
   "pattern": [
     "GGG",
-    "GXG",
+    "DXD",
     "GGG"
   ],
   "result": {
-    "id": "tieredironchests:iron_to_gold_chest_upgrade",
+    "item": "tieredironchests:diamond_chest",
     "count": 1
   }
 }

@@ -18,16 +18,17 @@ Upgrade kits, hoppers and comparators just work, zero dependencies.
 [[mixins]]
 config="tieredironchests.mixins.json"
 
+# NeoForge 1.20.1 still registers itself under the "forge" mod id.
 [[dependencies.${mod_id}]]
-    modId="neoforge"
-    type="required"
-    versionRange="[${neo_version},)"
+    modId="forge"
+    mandatory=true
+    versionRange="${neo_version_range}"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.${mod_id}]]
     modId="minecraft"
-    type="required"
+    mandatory=true
     versionRange="${minecraft_version_range}"
     ordering="NONE"
     side="BOTH"

@@ -19,12 +19,12 @@ public final class TieredIronChests {
 
     /** {@code tieredironchests:<path>}. Single construction site: the ResourceLocation API differs per MC version. */
     public static ResourceLocation id(String path) {
-        return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
+        return new ResourceLocation(MOD_ID, path);
     }
 
     /** {@code minecraft:<path>}. */
     public static ResourceLocation vanillaId(String path) {
-        return ResourceLocation.withDefaultNamespace(path);
+        return new ResourceLocation(path);
     }
 
     /** Called once by each loader adapter after all tiers are registered. */

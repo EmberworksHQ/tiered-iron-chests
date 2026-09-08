@@ -15,11 +15,8 @@
           "name": "tieredironchests:gold_chest",
           "functions": [
             {
-              "function": "minecraft:copy_components",
-              "source": "block_entity",
-              "include": [
-                "minecraft:custom_name"
-              ]
+              "function": "minecraft:copy_name",
+              "source": "block_entity"
             }
           ]
         }

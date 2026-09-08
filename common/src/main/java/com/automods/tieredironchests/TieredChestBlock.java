@@ -1,19 +1,21 @@
 package com.automods.tieredironchests;
 
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.Container;
 import net.minecraft.world.Containers;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Cat;
 import net.minecraft.world.entity.monster.piglin.PiglinAi;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -54,11 +56,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
  * so two tiered chests placed side by side stay independent single chests.
  */
 public class TieredChestBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
-    public static final MapCodec<TieredChestBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-            ChestTier.CODEC.fieldOf("tier").forGetter(TieredChestBlock::tier),
-            propertiesCodec()
-    ).apply(instance, TieredChestBlock::new));
-
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     /** Same hitbox as a single vanilla chest. */
@@ -76,11 +73,6 @@ public class TieredChestBlock extends BaseEntityBlock implements SimpleWaterlogg
 
     public ChestTier tier() {
         return tier;
-    }
-
-    @Override
-    public MapCodec<? extends BaseEntityBlock> codec() {
-        return CODEC;
     }
 
     @Override
@@ -131,7 +123,7 @@ public class TieredChestBlock extends BaseEntityBlock implements SimpleWaterlogg
     }
 
     @Override
-    public boolean isPathfindable(BlockState state, PathComputationType type) {
+    public boolean isPathfindable(BlockState state, BlockGetter level, BlockPos pos, PathComputationType type) {
         return false;
     }
 
@@ -157,10 +149,18 @@ public class TieredChestBlock extends BaseEntityBlock implements SimpleWaterlogg
         }
     }
 
+    /** 1.20.1: the custom name of the placed item stack is applied here (1.21 does it through data components). */
+    @Override
+    public void setPlacedBy(Level level, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
+        if (stack.hasCustomHoverName() && level.getBlockEntity(pos) instanceof TieredChestBlockEntity chest) {
+            chest.setCustomName(stack.getHoverName());
+        }
+    }
+
     // ---- interaction ----
 
     @Override
-    public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (level.isClientSide) {
             return InteractionResult.SUCCESS;
         }
@@ -183,8 +183,13 @@ public class TieredChestBlock extends BaseEntityBlock implements SimpleWaterlogg
 
     @Override
     public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
-        Containers.dropContentsOnDestroy(state, newState, level, pos);
-        super.onRemove(state, level, pos, newState, isMoving);
+        if (!state.is(newState.getBlock())) {
+            if (level.getBlockEntity(pos) instanceof Container container) {
+                Containers.dropContents(level, pos, container);
+                level.updateNeighbourForOutputSignal(pos, this);
+            }
+            super.onRemove(state, level, pos, newState, isMoving);
+        }
     }
 
     // ---- redstone ----

@@ -2,7 +2,7 @@
 // `.\gradlew.bat build` builds common/ (compile check only), fabric/ and neoforge/ jars.
 plugins {
     id 'net.fabricmc.fabric-loom-remap' version "${loom_version}" apply false
-    id 'net.neoforged.moddev' version "${moddev_version}" apply false
+    id 'net.neoforged.moddev.legacyforge' version "${moddev_version}" apply false
 }
 
 subprojects {

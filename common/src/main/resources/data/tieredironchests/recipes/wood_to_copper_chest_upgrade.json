@@ -15,7 +15,7 @@
     "CCC"
   ],
   "result": {
-    "id": "tieredironchests:wood_to_copper_chest_upgrade",
+    "item": "tieredironchests:wood_to_copper_chest_upgrade",
     "count": 1
   }
 }

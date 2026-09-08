@@ -6,7 +6,7 @@
       "item": "minecraft:iron_ingot"
     },
     "X": {
-      "item": "tieredironchests:copper_chest"
+      "item": "minecraft:copper_ingot"
     }
   },
   "pattern": [
@@ -15,7 +15,7 @@
     "III"
   ],
   "result": {
-    "id": "tieredironchests:iron_chest",
+    "item": "tieredironchests:copper_to_iron_chest_upgrade",
     "count": 1
   }
 }

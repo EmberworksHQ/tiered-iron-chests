@@ -6,7 +6,7 @@
       "item": "minecraft:gold_ingot"
     },
     "X": {
-      "item": "tieredironchests:iron_chest"
+      "item": "minecraft:iron_ingot"
     }
   },
   "pattern": [
@@ -15,7 +15,7 @@
     "GGG"
   ],
   "result": {
-    "id": "tieredironchests:gold_chest",
+    "item": "tieredironchests:iron_to_gold_chest_upgrade",
     "count": 1
   }
 }
